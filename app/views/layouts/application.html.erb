@@ -2,11 +2,33 @@
 <html>
 <head>
   <title>Ordenes</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <nav class="be-red white large-padding">
+      <ul class="row center-xs middle-xs center-md middle-md" style="list-style-type:none;">
+        <li class="col-md col-xs">
+          <h1 class="no-margin" id="logo">BLOG</h1>
+        </li>
+        <li class="col-md col-xs">
+          <%= link_to "Inicio", root_path %>
+        </li>
+        <li class="col-md col-xs">
+          Diseno
+        </li>
+        <li class="col-md col-xs">
+          Programacion
+        </li>
+        <li class="col-md col-xs">
+          Tecnologia
+        </li>
+      </ul>
+    </nav>
+  </header>
   <% if user_signed_in? %>
     <li>
       <%= link_to "cerrar sesion", destroy_user_session_path, method: :delete %>
