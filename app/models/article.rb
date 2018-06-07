@@ -1,4 +1,26 @@
 class Article < ActiveRecord::Base
-  validates :title, presence: true
-  validates :body, presence: true
+  belongs_to :user
+  has_many :comments
+
+  has_attached_file :cover, styles: {medium: "1280x720", thumb: "800x600"}
+  validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
+
+  validates :title, presence: true, uniqueness: true
+  validates :body, presence: true, length: { minimum: 20}
+  # before_create :set_visits_count
+  before_create :set_visits_count
+
+
+  def update_visits_count
+    self.update(visits_count: self.visits_count + 1)
+  end
+
+  private
+
+  def set_visits_count
+    self.visits_count ||= 0
+    #code
+  end
+
+
 end
